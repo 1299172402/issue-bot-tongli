@@ -1,0 +1,26 @@
+name: Download Tongli Manga (issues)
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4.2.0
+        with:
+          python-version: 3.10.6
+
+      - name: Start Download
+        run: |
+          pip install -r requirements.txt
+          python trigger.py
+        env: 
+          GHP_TONGLI: ${{ secrets.GHP_TONGLI }}
+          WORKFLOW_URL: ${{ secrets.WORKFLOW_URL }}
+          
