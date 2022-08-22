@@ -5,12 +5,12 @@ import requests
 GHP_TONGLI = os.environ["GHP_TONGLI"]
 WORKFLOW_URL = os.environ["WORKFLOW_URL"]
 ACTION_URL = os.environ["ACTION_URL"]
-COMMENT = os.environ["COMMENT"]
+COMMENTID = os.environ["COMMENT_ID"]
 
 BASE_API_URL = 'https://api.github.com'
 owner = '1299172402'
 repo = 'tongli-new'
-issue_number = NUMBER
+comment_id = COMMENTID
 
 headers = {
     "Accept": "application/vnd.github+json",
@@ -18,11 +18,15 @@ headers = {
 }
 
 def main():
-    print(type(COMMENT))
-    comments = json.loads(COMMENT)
-    print(COMMENT)
-    print(COMMENT['id'])
-    print(COMMENT['body'])
+    url = f'{BASE_API_URL}/repos/{owner}/{repo}/issues/comments/{comment_id}'
+    res = requests.get(url, headers=headers).json()
+    run_id = re.search(r'#.*#', res['body']) 
+    run_id = run_id[1:-1]
+
+    url = f'{BASE_API_URL}/repos/{owner}/{repo}/actions/runs/{run_id}'
+    res = requests.get(url, headers=headers).json()
+    print(res)
+
     
 
 if __name__ == '__main__':
