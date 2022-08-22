@@ -7,11 +7,13 @@ GHP_TONGLI = os.environ["GHP_TONGLI"]
 WORKFLOW_URL = os.environ["WORKFLOW_URL"]
 ACTION_URL = os.environ["ACTION_URL"]
 COMMENTID = os.environ["COMMENT_ID"]
+NUMBER = os.environ["NUMBER"]
 
 BASE_API_URL = 'https://api.github.com'
 owner = '1299172402'
 repo = 'tongli-new'
 comment_id = COMMENTID
+issue_number = NUMBER
 
 headers = {
     "Accept": "application/vnd.github+json",
@@ -21,13 +23,31 @@ headers = {
 def main():
     url = f'{BASE_API_URL}/repos/{owner}/{repo}/issues/comments/{comment_id}'
     res = requests.get(url, headers=headers).json()
-    run_id = re.search(r'#.*#', res['body']) 
+    run_id = re.search(r'#.*#', res['body']).group()
     run_id = run_id[1:-1]
+    print(f'[info] run_id: {run_id}')
 
-    url = f'{BASE_API_URL}/repos/{owner}/{repo}/actions/runs/{run_id}'
+    url = f'{ACTION_URL}/runs/{run_id}'
     res = requests.get(url, headers=headers).json()
-    print(res)
+    artifacts_url = res['artifacts_url']
+    print(f'[info] artifacts_url: {artifacts_url}')
 
+    url = artifacts_url
+    res = requests.get(url, headers=headers).json()
+    artifact_id = res['artifacts'][0]['id']
+    print(f'[info] artifact_id: {artifact_id}')
+
+    archive_format = 'zip'
+    url = f'{ACTION_URL}/artifacts/{artifact_id}/{archive_format}'
+    res = requests.get(url, headers=headers, allow_redirects=False)
+    print(f'[info] result: {res}')
+    direct_url = res.headers['Location']
+    print(f'[info] url: {direct_url}')
+
+    url = f'{BASE_API_URL}/repos/{owner}/{repo}/issues/{str(issue_number)}/comments'
+    data = {"body": f"URL: {direct_url} "}
+    requests.post(url, headers=headers, data=json.dumps(data))
+    print(f'[info] comment: display direct_url')
 
 
 if __name__ == '__main__':

@@ -25,4 +25,4 @@ jobs:
           WORKFLOW_URL: ${{ secrets.WORKFLOW_URL }}
           ACTION_URL: ${{ secrets.ACTION_URL }}
           COMMENT_ID: ${{ github.event.comment.id }}
-
+          NUMBER: ${{ github.event.issue.number }}

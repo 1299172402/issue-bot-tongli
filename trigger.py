@@ -40,7 +40,7 @@ def main():
     res = requests.post(url, headers=headers, data=json.dumps(data))
     print(f'[info] workflow: {res}')
 
-    url = ACTION_URL
+    url = f'{ACTION_URL}/runs'
     res = requests.get(url, headers=headers).json()
     run_id = res['workflow_runs'][0]['id']
     print(f'[info] run_id: {run_id}')
