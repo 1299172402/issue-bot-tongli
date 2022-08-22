@@ -1,0 +1,42 @@
+name: Download Tongli Manga
+
+on:
+  workflow_dispatch:
+    inputs:
+      type:
+        description: 'type'
+        required: true
+        type: choice
+        options:
+        - NEW
+        - ALL
+      bookid:
+        description: 'bookid'
+        required: true
+        type: string
+      isSerial:
+        description: 'isSerial'
+        type: boolean
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Start Download
+        run: |
+          curl \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: token $GHP_TONGLI" \
+            $WORKFLOW_URL \
+            -d '{"ref":"main","inputs":{"type":"$TYPE","bookid":"$BOOKID","isSerial":"$ISSERIAL"}}'
+        env: 
+          GHP_TONGLI: ${{ secrets.GHP_TONGLI }}
+          WORKFLOW_URL: ${{ secrets.WORKFLOW_URL }}
+          TYPE: ${{ inputs.type }}
+          BOOKID: ${{ inputs.bookid }}
+          ISSERIAL: ${{ inputs.isSerial }}
+          
