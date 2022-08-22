@@ -1,8 +1,8 @@
-name: Download Tongli Manga (issues)
+name: Get Artifacts URL (comment)
 
 on:
-  issues:
-    types: [opened]
+  issue_comment:
+    types: [created]
 
 jobs:
   build:
@@ -19,9 +19,10 @@ jobs:
       - name: Start Download
         run: |
           pip install -r requirements.txt
-          python trigger.py
+          python artifacts.py
         env: 
           GHP_TONGLI: ${{ secrets.GHP_TONGLI }}
           WORKFLOW_URL: ${{ secrets.WORKFLOW_URL }}
           ACTION_URL: ${{ secrets.ACTION_URL }}
-          NUMBER: ${{ github.event.issue.number }}
+          COMMENT_ID: ${{ github.event.comment.id }}
+
