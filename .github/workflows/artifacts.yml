@@ -24,5 +24,5 @@ jobs:
           GHP_TONGLI: ${{ secrets.GHP_TONGLI }}
           WORKFLOW_URL: ${{ secrets.WORKFLOW_URL }}
           ACTION_URL: ${{ secrets.ACTION_URL }}
-          COMMENT_ID: ${{ github.event.comment.id }}
+          COMMENT: ${{ github.event.comment }}
 
