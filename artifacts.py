@@ -1,3 +1,4 @@
+import re
 import os
 import json
 import requests
@@ -27,7 +28,7 @@ def main():
     res = requests.get(url, headers=headers).json()
     print(res)
 
-    
+
 
 if __name__ == '__main__':
     main()
