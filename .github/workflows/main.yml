@@ -32,7 +32,7 @@ jobs:
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: token $GHP_TONGLI" \
             $WORKFLOW_URL \
-            -d '{"ref":"main","inputs":{"type":$TYPE,"bookid":$BOOKID,"isSerial":$ISSERIAL}}'
+            -d '{"ref":"main","inputs":{"type":"'"$TYPE"'","bookid":"'"$BOOKID"'","isSerial":"'"$ISSERIAL"'"}}'
         env: 
           GHP_TONGLI: ${{ secrets.GHP_TONGLI }}
           WORKFLOW_URL: ${{ secrets.WORKFLOW_URL }}
