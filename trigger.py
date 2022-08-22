@@ -42,7 +42,7 @@ def main():
 
     url = f'https://api.github.com/repos/1299172402/tongli-new/issues/{str(number)}/comments'
     data = {"body": f"Your run id is ${run_id}$. We'll let you know when it's done."}
-    requests.post(url, data=json.dumps(data))
+    requests.post(url, headers=headers, data=json.dumps(data))
     print(f'[info] comment: start download')
 
 if __name__ == '__main__':
