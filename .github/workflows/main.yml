@@ -1,4 +1,4 @@
-name: Download Tongli Manga
+name: Manually Run
 
 on:
   workflow_dispatch:
