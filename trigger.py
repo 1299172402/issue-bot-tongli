@@ -50,15 +50,5 @@ def main():
         print(f'[error] start workflow failed.')
         return 0
 
-    url = f'{ACTION_URL}/runs'
-    res = requests.get(url, headers=headers).json()
-    run_id = res['workflow_runs'][0]['id']
-    print(f'[info] run_id: {run_id}')
-
-    url = f'{BASE_API_URL}/repos/{owner}/{repo}/issues/{str(issue_number)}/comments'
-    data = {"body": f"[bot] 你的 run_id 是 {run_id}。 当工作流完成时会通知你。"}
-    requests.post(url, headers=headers, data=json.dumps(data))
-    print(f'[info] comment: start download')
-
 if __name__ == '__main__':
     main()
