@@ -50,7 +50,8 @@ def func(BookGroupID, Title, CoverURL, Author, IsSerial):
 ## 上架日期：{OnShelfDate}
     
 ## 其他信息
- 
+
+- BookGroupID {BookGroupID}
 - BookID {BookID}
 - IsSerial {IsSerial}
 
