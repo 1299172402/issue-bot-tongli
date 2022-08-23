@@ -41,11 +41,15 @@ def main():
     url = f'{ACTION_URL}/artifacts/{artifact_id}/{archive_format}'
     res = requests.get(url, headers=headers, allow_redirects=False)
     print(f'[info] result: {res}')
-    direct_url = res.headers['Location']
-    print(f'[info] url: {direct_url}')
+    if res.status_code == 302:
+        direct_url = res.headers['Location']
+        data = {"body": f"[Bot] URL: {direct_url} "}
+        print(f'[info] url: {direct_url}')
+    else:
+        data = {"body": f"[Bot] artifacts 已过期。请重新发起 issue "}
+        print(f'[error] The artifacts url already gone.')
 
     url = f'{BASE_API_URL}/repos/{owner}/{repo}/issues/{str(issue_number)}/comments'
-    data = {"body": f"[Bot] URL: {direct_url} "}
     requests.post(url, headers=headers, data=json.dumps(data))
     print(f'[info] comment: display direct_url')
 

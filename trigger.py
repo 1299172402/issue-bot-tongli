@@ -22,6 +22,9 @@ def main():
     res = requests.get(url, headers=headers).json()
     if res['labels'][0]['name'] == 'Runner':
         params = res['body']
+    else:
+        print('[error] `Runner` not in labels')
+        return 0
 
     params = json.loads(params)
     print(f'[info] params: {params}')
