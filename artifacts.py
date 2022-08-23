@@ -11,7 +11,7 @@ NUMBER = os.environ["NUMBER"]
 
 BASE_API_URL = 'https://api.github.com'
 owner = '1299172402'
-repo = 'tongli-new'
+repo = 'issue-bot-tongli'
 comment_id = COMMENTID
 issue_number = NUMBER
 
