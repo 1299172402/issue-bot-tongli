@@ -46,7 +46,7 @@ def main():
     print(f'[info] run_id: {run_id}')
 
     url = f'{BASE_API_URL}/repos/{owner}/{repo}/issues/{str(issue_number)}/comments'
-    data = {"body": f"Your run id is #{run_id}#. We'll let you know when it's done."}
+    data = {"body": f"[bot] 你的 run_id 是 {run_id}。 当工作流完成时会通知你。"}
     requests.post(url, headers=headers, data=json.dumps(data))
     print(f'[info] comment: start download')
 
