@@ -17,7 +17,7 @@ headers = {
 
 def comment(message):
     url = f'{BASE_API_URL}/repos/{owner}/{repo}/issues/{str(issue_number)}/comments'
-    data = {"body": f"[bot] {message}"}
+    data = {"body": f"{message}"}
     requests.post(url, headers=headers, data=json.dumps(data))
     print(f'[info] comment: {message}')
 
@@ -34,14 +34,26 @@ def func(BookGroupID, Title, CoverURL, Author, IsSerial):
     Vol = res['Vol']
 
     text = f'''
-![Cover]({CoverURL})
-{Title} © {Author} 著
-{''.join('⭐' for _ in range(RankStar))}
----
-{Introduction}
 
-- 最新话 {Vol}
-- 上架时间 {OnShelfDate}
+<img src="{CoverURL}" height="50%" width="50%" >
+
+# [bot] {Title} © {Author} 著
+
+## 评分： {''.join('⭐' for _ in range(RankStar))}
+
+## 简介
+
+　　{Introduction}
+
+## 最新话：{Vol}
+
+## 上架日期：{OnShelfDate}
+    
+## 其他信息
+ 
+- BookID {BookID}
+- IsSerial {IsSerial}
+
     '''
     comment(text)
 
