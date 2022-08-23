@@ -1,3 +1,4 @@
+import os
 import requests
 
 GHP_TONGLI = os.environ["GHP_TONGLI"]
