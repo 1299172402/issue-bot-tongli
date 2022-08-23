@@ -48,10 +48,10 @@ def main():
     print(f'[info] result: {res}')
     if res.status_code == 302:
         direct_url = res.headers['Location']
-        data = {"body": f"[Bot] URL: {direct_url} "}
+        data = {"body": f"[bot] URL: {direct_url} "}
         print(f'[info] url: {direct_url}')
     else:
-        data = {"body": f"[Bot] artifacts 已过期。请重新发起 issue "}
+        data = {"body": f"[bot] artifacts 已过期。请重新发起 issue "}
         print(f'[error] The artifacts url already gone.')
 
     url = f'{BASE_API_URL}/repos/{owner}/{repo}/issues/{str(issue_number)}/comments'
