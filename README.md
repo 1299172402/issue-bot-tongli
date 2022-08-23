@@ -16,6 +16,8 @@ p.s.本项目的诞生不是因为东立书城的APP卡爆了 XD
 
 可以查看封面、名称、作者、评分、简介等信息
 
+![Search](https://user-images.githubusercontent.com/29673994/186094462-c855c41a-a812-450d-a07a-4068f80b934d.png)
+
 ### 获取漫画
 
 进入[此页面](https://github.com/1299172402/issue-bot-tongli/issues/new?assignees=&labels=Runner&template=runner.md&title=%5BRunner%5D+)，填写以下内容，值均区分大小写。
@@ -34,6 +36,8 @@ p.s.本项目的诞生不是因为东立书城的APP卡爆了 XD
 亦可以通过 artifacts 的 URL 获取。
 
 示例：[[Runner] #32](https://github.com/1299172402/issue-bot-tongli/issues/32) 
+
+![Runner](https://user-images.githubusercontent.com/29673994/186094521-c6a425ff-9998-4729-af22-94eaa1b51d24.png)
 
 ## 后记
 
