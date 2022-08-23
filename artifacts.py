@@ -23,9 +23,14 @@ headers = {
 def main():
     url = f'{BASE_API_URL}/repos/{owner}/{repo}/issues/comments/{comment_id}'
     res = requests.get(url, headers=headers).json()
-    run_id = re.search(r'#\d+#', res['body']).group()
-    run_id = run_id[1:-1]
-    print(f'[info] run_id: {run_id}')
+    run_id = re.search(r'#\d+#', res['body'])
+    if run_id:
+        run_id = run_id.group()
+        run_id = run_id[1:-1]
+        print(f'[info] run_id: {run_id}')
+    else:
+        print('[error] not found run_id')
+        return 0
 
     url = f'{ACTION_URL}/runs/{run_id}'
     res = requests.get(url, headers=headers).json()
