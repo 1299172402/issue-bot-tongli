@@ -41,7 +41,14 @@ def main():
         }
     }
     res = requests.post(url, headers=headers, data=json.dumps(data))
-    print(f'[info] workflow: {res}')
+    if res.status_code == 204:
+        print(f'[info] workflow: {res}')
+    else:
+        url = f'{BASE_API_URL}/repos/{owner}/{repo}/issues/{str(issue_number)}/comments'
+        data = {"body": f"[bot] 你输入的参数有误，请重新发起 issue"}
+        requests.post(url, headers=headers, data=json.dumps(data))
+        print(f'[error] start workflow failed.')
+        return 0
 
     url = f'{ACTION_URL}/runs'
     res = requests.get(url, headers=headers).json()

@@ -6,6 +6,7 @@ on:
 
 jobs:
   build:
+    if: ${{ startsWith(github.event.comment.body, 'artifacts') }}
     runs-on: ubuntu-latest
 
     steps:
