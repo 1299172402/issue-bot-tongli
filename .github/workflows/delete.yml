@@ -1,0 +1,19 @@
+name: delete
+
+on:
+  issues:
+    types: [closed]
+
+jobs:
+  Delete:
+    if: ${{ startsWith(github.event.issue.title, '[Runner]') || startsWith(github.event.issue.title, '[Search]') }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Delete Issue
+      - uses: vtcaregorodtcev/delete-issue@main
+        with:
+          github_token: ${{ secrets.GHP_TONGLI }}
+          issue_node_id: ${{ github.event.issue.node_id }}

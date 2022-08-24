@@ -2,10 +2,10 @@ name: Search Manga
 
 on:
   issues:
-    types: [opened]
+    types: [opened, edited]
 
 jobs:
-  build:
+  Search:
     if: ${{ startsWith(github.event.issue.title, '[Search]') }}
     runs-on: ubuntu-latest
 
