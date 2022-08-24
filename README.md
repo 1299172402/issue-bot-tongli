@@ -43,6 +43,10 @@ p.s. 本项目的诞生不是因为东立书城的APP太容易卡了XD
 
 <img src="https://user-images.githubusercontent.com/29673994/186094521-c6a425ff-9998-4729-af22-94eaa1b51d24.png" height="80%" width="80%" >
 
+### 删除 issue
+
+含有 Search 和 Runner 标记的 issue 一旦被关闭，就会自动删除此 issue 
+
 ## 后记
 
 其实个人觉得这个项目做成 Telegram bot 可能实用性更好一些，能更直观追自己喜欢的漫画。只可惜本人不太懂 TG 的 API，也没有相关的开发经验。。。
