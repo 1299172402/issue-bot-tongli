@@ -1,6 +1,10 @@
-# Number of days of inactivity before an Issue or Pull Request with the stale label is closed.
-# Set to false to disable. If disabled, issues still need to be closed manually, but will remain marked as stale.
-daysUntilClose: 2
+# Number of days of inactivity before an issue becomes stale
+daysUntilStale: 1
+# Number of days of inactivity before a stale issue is closed
+daysUntilClose: 1
 
 # Only issues or pull requests with all of these labels are check if stale. Defaults to `[]` (disabled)
 onlyLabels: [Search, Runner]
+
+# Label to use when marking an issue as stale
+staleLabel: stale
