@@ -6,11 +6,13 @@ GHP_TONGLI = os.environ["GHP_TONGLI"]
 WORKFLOW_URL = os.environ["WORKFLOW_URL"]
 ACTION_URL = os.environ["ACTION_URL"]
 NUMBER = os.environ["NUMBER"]
+USER = os.environ["USER"]
 
 BASE_API_URL = 'https://api.github.com'
 owner = '1299172402'
 repo = 'issue-bot-tongli'
 issue_number = NUMBER
+username = USER
 
 headers = {
     "Accept": "application/vnd.github+json",
@@ -20,11 +22,7 @@ headers = {
 def main():
     url = f'{BASE_API_URL}/repos/{owner}/{repo}/issues/{issue_number}'
     res = requests.get(url, headers=headers).json()
-    if res['labels'][0]['name'] == 'Runner':
-        params = res['body']
-    else:
-        print('[error] `Runner` not in labels')
-        return 0
+    params = res['body']
 
     params = json.loads(params)
     print(f'[info] params: {params}')
@@ -37,6 +35,7 @@ def main():
             "bookid": params['bookid'],
             "isSerial": params['isSerial'],
             "RefreshToken": params['RefreshToken'],
+            "username": username,
             "issue_number": str(issue_number)
         }
     }
